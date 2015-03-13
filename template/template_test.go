@@ -15,14 +15,26 @@ func Test_FuncMap(tt *testing.T){
     t:=template.New("t1.html")
     t = t.Funcs(template.FuncMap{"emailDeal":EmailDealWith})
     t,err := t.ParseFiles("t1.html")
-    f,_:=os.Create("test.html")
-    defer  f.Close()
     if err!=nil {
         tt.Fatal(err)
     }else {
-        err =t.Execute(f,user)
+        err =t.Execute(os.Stdout,user)
         if err!=nil {
             tt.Fatal(err)
         }
+    }
+}
+
+
+
+func Test_FuncMap2(tt *testing.T){
+    t,err := template.ParseFiles("my.html","header.html","content.html","footer.html")
+    if err!=nil {
+        tt.Fatal(err)
+    }else {
+        t.ExecuteTemplate(os.Stdout,"my",nil)
+        t.ExecuteTemplate(os.Stdout,"header",nil)
+        t.ExecuteTemplate(os.Stdout,"content",nil)
+        t.ExecuteTemplate(os.Stdout,"footer",nil)
     }
 }
