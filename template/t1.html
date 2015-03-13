@@ -8,7 +8,7 @@
 姓名是：{{.UserName}}</br>
 有这么几个邮箱：
 <ul>{{range .Emails}}
-    <li>{{.| EmailDeal | html }}</li>
+    <li>{{. | html }}</li>
     {{end}}
 </ul>
 有如下朋友

@@ -31,7 +31,7 @@ func Template1(rw http.ResponseWriter,req *http.Request){
 
 
 
-    t,err:=template.New("base.html").Funcs(funcMap).ParseFiles("template/t1.html")
+    t,err:=template.ParseFiles("template/t1.html")
     if err!=nil {
         fmt.Println(err)
         rw.Write([]byte("hehe"))
