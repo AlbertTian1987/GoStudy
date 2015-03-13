@@ -30,13 +30,13 @@ func Template1(rw http.ResponseWriter,req *http.Request){
     user.Friends[2] = Friend{"安德森"}
 
 
-
+    
     t,err:=template.ParseFiles("template/t1.html")
     if err!=nil {
         fmt.Println(err)
         rw.Write([]byte("hehe"))
     }else {
-        t.Execute(rw,user)
+        t.Funcs(funcMap).Execute(rw,user)
     }
 }
 
@@ -57,5 +57,5 @@ func EmailDealWith(args ...interface{}) string{
         return s
     }
 
-    return (substrs[0])+" at "+substrs[1]
+    return (substrs[0]+" at "+substrs[1])
 }

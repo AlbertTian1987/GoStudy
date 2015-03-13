@@ -8,7 +8,7 @@
 姓名是：{{.UserName}}</br>
 有这么几个邮箱：
 <ul>{{range .Emails}}
-    <li>{{. | html }}</li>
+    <li>{{. | emailDeal }}</li>
     {{end}}
 </ul>
 有如下朋友
@@ -41,5 +41,10 @@
 {{with $x:="output"}} {{printf "%q" $x}} {{end}}</br>
 {{with $x:="output"}} {{$x | printf "%q"}} {{end}}</br>
 
+
+{{define "T1"}}One{{end}}
+{{define "T2"}}Two{{end}}
+{{define "T3"}}{{template "T1"}} {{template "T2" }}{{end}}
+{{template "T3"}}
 </body>
 </html>
