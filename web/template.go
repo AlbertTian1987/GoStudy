@@ -1,4 +1,4 @@
-package template
+package web
 import (
     "net/http"
     "text/template"

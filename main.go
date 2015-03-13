@@ -1,11 +1,11 @@
 package main
 import (
     "net/http"
-    "GoStudy/template"
+    "GoStudy/web"
 )
 
 
 func main(){
-    http.HandleFunc("/",template.Template1)
+    http.HandleFunc("/",web.Template1)
     http.ListenAndServe(":9090",nil)
 }
