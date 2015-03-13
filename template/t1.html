@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T1</title>
+</head>
+<body>
+姓名是：{{.UserName}}</br>
+有这么几个邮箱：
+<ul>{{range .Emails}}
+    <li>{{.| EmailDeal | html }}</li>
+    {{end}}
+</ul>
+有如下朋友
+<ul>
+    {{with .Friends}}
+    {{range .}}
+    <li>姓名:{{.Name}}</li>
+    {{end}}
+    {{end}}
+</ul>
+<p>空pipeline if demo ：</p>
+{{if ``}}
+<p>不会输出</p>
+{{end}}
+<p>不为空的pipeline demo:</p>
+{{if `anytning`}}
+<p>我有内容，会输出</p>
+{{end}}
+<p>if-else demo</p>
+{{if `a`}}
+<p>if部分</p>
+{{else}}
+<p>>else部分</p>
+{{end}}
+
+
+<p>模板变量</p>
+
+{{with $x:="output" | printf "$x=%q"}} {{$x}} {{end}}</br>
+{{with $x:="output"}} {{printf "%q" $x}} {{end}}</br>
+{{with $x:="output"}} {{$x | printf "%q"}} {{end}}</br>
+
+</body>
+</html>
