@@ -4,6 +4,7 @@ import (
     "text/template"
     "fmt"
     "strings"
+    "GoStudy/db"
 )
 type User struct {
     UserName string
@@ -29,18 +30,20 @@ func Template1(rw http.ResponseWriter,req *http.Request){
     user.Friends[1] = Friend{"大卫"}
     user.Friends[2] = Friend{"安德森"}
 
+    db.Query("","")
 
-    
-    t,err:=template.ParseFiles("template/t1.html")
+    t := template.New("web/t1.html")
+    t = t.Funcs(funcMap)
+    t,err:=template.ParseFiles("web/t1.html")
     if err!=nil {
         fmt.Println(err)
         rw.Write([]byte("hehe"))
     }else {
-        t.Funcs(funcMap).Execute(rw,user)
+        t.Execute(rw,user)
     }
 }
 
-var funcMap = template.FuncMap {"EmailDeal":EmailDealWith}
+var funcMap = template.FuncMap {"emailDeal":EmailDealWith}
 
 func EmailDealWith(args ...interface{}) string{
     ok:=false
