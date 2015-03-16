@@ -1,11 +1,11 @@
 package regexp
-import "testing"
 
+import "testing"
 
 //func Test_ParseBardu(t *testing.T){
 //    ParseBaidu()
 //}
 
-func Test_Find(t *testing.T){
-    FindInString()
+func Test_Find(t *testing.T) {
+	FindInString()
 }
