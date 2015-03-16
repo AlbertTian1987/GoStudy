@@ -57,7 +57,6 @@ func (manager *Manager) sessionId() string {
 	if _, err := rand.Read(b); err != nil {
 		return ""
 	}
-	MyDB
 
 	return hex.EncodeToString(b)
 }

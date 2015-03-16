@@ -4,6 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	. "github.com/bitly/go-simplejson"
+    "os"
+    "io/ioutil"
+    "reflect"
 )
 
 type User struct {
@@ -86,3 +89,70 @@ func EncodeToJson() {
 		fmt.Println(string(data))
 	}
 }
+
+type config interface{}
+
+
+type Config struct {
+    Store string
+    StoreConfig json.RawMessage
+}
+
+type RedisConfig struct{
+    Addr string `json:"addr"`
+    DB int `json:"db"`
+}
+
+
+
+type MySqlConfig struct {
+    Addr string `json:"addr"`
+    DB int `json:"db"`
+    Password string `json:"password"`
+    User string `json:"user"`
+}
+
+func InitConfig() interface{}{
+    f,err := os.Open("config.json")
+    if err!=nil {
+        fmt.Println(err)
+        return nil
+    }
+    defer f.Close()
+    data,err:=ioutil.ReadAll(f)
+    if err!=nil {
+        fmt.Println(err)
+        return nil
+    }
+    c := new(Config)
+    err=json.Unmarshal(data,c)
+    if err!=nil {
+        fmt.Println(err)
+        return nil
+    }
+    fmt.Println(c)
+    if c.Store == "redis" {
+        r:= new(RedisConfig)
+        json.Unmarshal(c.StoreConfig,r)
+        return r
+
+    }else if c.Store == "mysql" {
+        m := new(MySqlConfig)
+        json.Unmarshal(c.StoreConfig,m)
+        return m
+    }
+    reflect.
+    return nil
+}
+
+//func NewConfig(c *Config) *config {
+//    var cc *config
+//    switch c.Store {
+//        case "redis":
+//        cc = new(RedisConfig)
+//        case "mysql":
+//        cc = new (MySqlConfig)
+//    }
+//    json.Unmarshal(c.StoreConfig,cc)
+//    return cc
+//}

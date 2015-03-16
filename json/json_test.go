@@ -54,3 +54,9 @@ func Test_UnKnowJson(t *testing.T) {
 func Test_EncodeJson(t *testing.T) {
 	EncodeToJson()
 }
+
+
+func Test_JsonConfig(t *testing.T){
+    d := InitConfig()
+    t.Log(d)
+}

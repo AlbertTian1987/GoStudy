@@ -1,0 +1,13 @@
+{
+  "redis_store": {
+    "addr": "127.0.0.1",
+    "db": 1
+  },
+  "mysql_store": {
+    "addr": "127.0.0.1",
+    "db": "test",
+    "password": "admin",
+    "user": "root"
+  },
+  "store": "redis"
+}
