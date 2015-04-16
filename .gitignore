@@ -1,3 +1,4 @@
 .idea/
 *.iml
 *amd64*
+sync/datafile*/data
